@@ -15,9 +15,7 @@ use App\Http\Controllers\MediaController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dashboard');
-// });
+Route::get('/', [MediaController::class, 'index']);
 
 Route::get('category/{id}', [CategoryController::class, 'index']);
 

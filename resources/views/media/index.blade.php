@@ -35,12 +35,12 @@
             <th>Category</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($media as $m)
+        @foreach ($mediaPayload as $m)
         <tr>
             <td>{{ $m->id }}</td>
 
             <td>
-            <img src="{{ $m->category_name == 'Games' ?  Storage::url($m->media_file)  : Storage::url('public/default_image.jpeg')  }}"
+            <img src="{{ $m->category_name == 'Games' ?  Storage::url($m->media_file)  : asset('images/default_image.jpeg') }}"
             height="75" width="75" alt="" /></td> 
 
             <td>{{ $m->title }}</td>
@@ -48,8 +48,13 @@
             <td>{{ $m->category_name }}</td>
             <td>
             <a class="btn btn-primary btn-sm" href="{{ route('media.edit', $m->id) }}">Edit</a>
-            <button type="submit" data-id="{{ $m->id }}"  data-toggle="modal" data-target="#DeleteArticleModal" class="btn btn-danger btn-sm" id="getDeleteId" >Delete</button>
+            <!-- <button type="submit"  data-toggle="modal" data-target="#DeleteArticleModal" class="btn btn-danger btn-sm" id="getDeleteId" >Delete</button> -->
+            <form action="{{ route('media.destroy', $m->id) }}" method="POST">
 
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
             </td>
             
         </tr>
@@ -87,30 +92,5 @@
 
 @section('js')
     <script>
-    $(document).ready(function() {
-        var deleteID;
-        $('body').on('click', '#getDeleteId', function(){
-            deleteID = $(this).data('id');
-        })
-
-        $('#SubmitDeleteArticleForm').click(function(e) {
-            e.preventDefault();
-            var id = deleteID;
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "media/"+id,
-                method: 'DELETE',
-                success: function(result) {
-                    setInterval(function(){ 
-                        $('#DeleteArticleModal').hide();
-                    }, 1000);
-                }
-            });
-        });
-    });
     </script>
 @stop

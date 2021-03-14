@@ -42,7 +42,7 @@
             <td><a href="#" class="pop">
 
 
-            <img class="show_img" src="{{ $m->category_name == 'Games' ?  Storage::url($m->media_file)  : Storage::url('public/default_image.jpeg')  }}"
+            <img class="show_img" src="{{ $m->category_name == 'Games' ?  Storage::url($m->media_file)  : asset('images/default_image.jpeg')  }}"
             height="75" width="75" alt="" /></a></td> 
 
             <td>{{ $m->title }}</td>
@@ -52,8 +52,13 @@
     
             <a class="btn btn-primary  btn-sm openMedia" id ="{{ Storage::url($m->media_file) }}" href="#" data-id="{{ $m->fk_category_id }}">View</a>
             <a class="btn btn-primary  btn-sm" href="{{ route('media.edit', $m->id) }}">Edit</a>
-            <button type="submit" data-id="{{ $m->id }}"  data-toggle="modal" data-target="#DeleteArticleModal" class="btn btn-danger btn-sm" id="getDeleteId" >Delete</button>
+            <!-- <button type="submit" data-id="{{ $m->id }}"  data-toggle="modal" data-target="#DeleteArticleModal" class="btn btn-danger btn-sm" id="getDeleteId" >Delete</button> -->
+            <form action="{{ route('media.destroy', $m->id) }}" method="POST">
 
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
             </td>
             
             
@@ -79,7 +84,7 @@
   
   
 
-    <!-- Delete Article Modal -->
+    <!-- Delete Media Modal -->
 <div class="modal" id="DeleteArticleModal">
     <div class="modal-dialog">
         <div class="modal-content">

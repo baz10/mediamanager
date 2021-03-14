@@ -32,7 +32,7 @@
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Post Title:</strong>
+                    <strong>Media Title:</strong>
                     <input type="text" name="title" value="{{ $media->title }}" class="form-control" placeholder="Post Title">
                     @error('title')
                      <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -41,7 +41,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Post Description:</strong>
+                    <strong>Media Description:</strong>
                     <textarea class="form-control" style="height:150px" name="description" placeholder="Post Description">{{ $media->description }}</textarea>
                     @error('description')
                      <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -50,14 +50,14 @@
             </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Post Image:</strong>
+                <strong>Post Media:</strong>
                  <input type="file" name="media_file" class="form-control" placeholder="Post Title">
                 @error('image')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                @enderror
             </div>
             <div class="form-group">
-              <img src="{{ Storage::url($media->media_file) }}" height="200" width="200" alt="" />
+              <img src="{{ $category[2]->category_name == 'Games' ?  Storage::url($media->media_file)  : asset('images/default_image.jpeg')  }}" height="200" width="200" alt="" />
             </div>
         </div>
 

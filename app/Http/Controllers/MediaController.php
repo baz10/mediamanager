@@ -20,7 +20,7 @@ class MediaController extends Controller
     public function index()
     {
 
-        $data['media'] = Media::join('categories', 'category_id', '=', 'media.fk_category_id')
+        $data['mediaPayload'] = Media::join('categories', 'category_id', '=', 'media.fk_category_id')
         ->get(['media.*', 'categories.category_name']);
     
         return view('media.index', $data);
@@ -134,7 +134,7 @@ class MediaController extends Controller
     public function destroy($id)
     {
         $media = Media::findOrFail($id);
-        if(Storage::delete($media->image)) {
+        if(Storage::delete($media->media_file)) {
             $media->delete();
         }
 
