@@ -29,7 +29,7 @@
     <table class="table table-bordered">
         <tr>
             <th>S.No</th>
-            <th>Image</th>
+            <th>Media</th>
             <th>Title</th>
             <th>Description</th>
             <th>Category</th>

@@ -48,7 +48,7 @@
         </div>        
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Media Image:</strong>
+                <strong>Media:</strong>
                  <input required type="file" name="media_file" class="form-control" placeholder="Media Title">
                 @error('image')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>

@@ -50,7 +50,7 @@
             </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Post Media:</strong>
+                <strong>Media:</strong>
                  <input type="file" name="media_file" class="form-control" placeholder="Post Title">
                 @error('image')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
