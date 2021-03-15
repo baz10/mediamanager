@@ -31,7 +31,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Media Title:</strong>
-                <input type="text" name="title" class="form-control" placeholder="Media Title">
+                <input required type="text" name="title" class="form-control" placeholder="Media Title">
                @error('title')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                @enderror
@@ -40,7 +40,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Media Description:</strong>
-                <textarea class="form-control" style="height:150px" name="description" placeholder="Media Description"></textarea>
+                <textarea required class="form-control" style="height:150px" name="description" placeholder="Media Description"></textarea>
                 @error('description')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -49,7 +49,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Media Image:</strong>
-                 <input type="file" name="media_file" class="form-control" placeholder="Media Title">
+                 <input required type="file" name="media_file" class="form-control" placeholder="Media Title">
                 @error('image')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                @enderror
@@ -58,8 +58,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Category Type:</strong>
-                <select class="form-select" aria-label="Select Category" name="category_id">
-                <option selected>Select Category</option>
+                <select class="form-select" aria-label="Select Category" name="category_id" required>
+                <option disabled="disabled">Select Category</option>
                 @foreach ($category as $c)
 
                 <option value="{{ $c->category_id }}">{{ $c->category_name }}</option>
@@ -82,5 +82,5 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
 @stop

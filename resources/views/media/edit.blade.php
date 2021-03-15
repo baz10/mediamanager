@@ -33,7 +33,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Media Title:</strong>
-                    <input type="text" name="title" value="{{ $media->title }}" class="form-control" placeholder="Post Title">
+                    <input required type="text" name="title" value="{{ $media->title }}" class="form-control" placeholder="Post Title">
                     @error('title')
                      <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
@@ -42,7 +42,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Media Description:</strong>
-                    <textarea class="form-control" style="height:150px" name="description" placeholder="Post Description">{{ $media->description }}</textarea>
+                    <textarea required class="form-control" style="height:150px" name="description" placeholder="Post Description">{{ $media->description }}</textarea>
                     @error('description')
                      <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
@@ -56,16 +56,17 @@
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                @enderror
             </div>
+
             <div class="form-group">
-              <img src="{{ $category[2]->category_name == 'Games' ?  Storage::url($media->media_file)  : asset('images/default_image.jpeg')  }}" height="200" width="200" alt="" />
+              <img src="{{ $category[2]->category_id == $media->fk_category_id ?  Storage::url($media->media_file)  : asset('images/default_image.jpeg')  }}" height="200" width="200" alt="" />
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Category Type:</strong>
-                <select class="form-select" aria-label="Select Category" name="category_id">
-                <option selected>Select Category</option>
+                <select class="form-select" aria-label="Select Category" name="category_id" required >
+                <option disabled="disabled">Select Category</option>
                 @foreach ($category as $c)
 
                 <option value="{{ $c->category_id }}" @if($media->fk_category_id == $c->category_id) selected @endif > {{ $c->category_name }}</option>
@@ -89,5 +90,4 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
 @stop

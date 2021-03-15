@@ -50,6 +50,7 @@ class MediaController extends Controller
             'title' => 'required',
             'media_file' => 'required|mimes:jpg,png,jpeg,gif,svg,video/x-ms-asf,x-flv,mp4,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv,avi,audio/mpeg,mpga,mp3,wav',
             'description' => 'required',
+            'category_id' => 'required'
         ]);
 
 
@@ -105,12 +106,13 @@ class MediaController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'category_id' => 'required|Numeric'
         ]);
         
         $media = Media::find($id);
         if($request->hasFile('media_file')){
             $request->validate([
-              'media_file' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+              'media_file' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
             
             $path = $request->file('media_file')->store('public/media');
